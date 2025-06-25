@@ -80,7 +80,7 @@ python deploy_mujoco/deploy_mujoco.py
 - FixedPose:     位控恢复至默认关节值
 - LocoMode:      用于稳定行走的控制模式
 - Dance:         查尔顿斯舞
-- KongFu:        720度回旋踢（建议只在仿真中运行）
+- KungFu:        720度回旋踢（建议只在仿真中运行）
 - SkillCast:     下肢+腰部稳定站立，上肢位控至特定关节角，一般在执行Mimic策略前执行
 - SkillCooldown:  下肢+腰部持续平衡，上肢恢复至默认关节角，一般在执行Mimic策略后执行
 

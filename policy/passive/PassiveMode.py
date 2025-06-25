@@ -41,7 +41,9 @@ class PassiveMode(FSMState):
     
     def checkChange(self):
         if(self.state_cmd.skill_cmd == FSMCommand.POS_RESET):
+            self.state_cmd.skill_cmd = FSMCommand.INVALID
             return FSMStateName.FIXEDPOSE
         else:
+            self.state_cmd.skill_cmd = FSMCommand.INVALID
             return FSMStateName.PASSIVE
         

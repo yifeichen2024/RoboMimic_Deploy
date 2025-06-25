@@ -1,6 +1,6 @@
-onnx_path: "dance_0605.onnx"
+onnx_path: "model_62000.onnx"
 
-motion_length: 18.0
+motion_length: 3.633
 
 kps: [100, 100, 100, 200, 20, 20,
             100, 100, 100, 200, 20, 20,

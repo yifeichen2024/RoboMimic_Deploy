@@ -281,7 +281,7 @@
     <accelerometer name="imu-pelvis-linear-acceleration" site="imu_in_pelvis" noise="1e-2" cutoff="157"/>
   </sensor>
 
-  <contact>
+  <!-- <contact>
         <exclude body1="left_hip_pitch_link" body2="left_hip_roll_link"/>
         <exclude body1="pelvis" body2="left_hip_pitch_link"/>
         <exclude body1="pelvis" body2="left_hip_roll_link"/>
@@ -289,7 +289,7 @@
         <exclude body1="right_hip_pitch_link" body2="right_hip_roll_link"/>
         <exclude body1="pelvis" body2="right_hip_pitch_link"/>
         <exclude body1="pelvis" body2="right_hip_roll_link"/>
-    </contact>
+    </contact> -->
 
 
   <!-- setup scene -->

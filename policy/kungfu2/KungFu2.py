@@ -10,20 +10,19 @@ import onnxruntime
 import torch
 import os
 
-
-class Dance(FSMState):
+class KungFu2(FSMState):
     def __init__(self, state_cmd:StateAndCmd, policy_output:PolicyOutput):
         super().__init__()
         self.state_cmd = state_cmd
         self.policy_output = policy_output
-        self.name = FSMStateName.SKILL_Dance
-        self.name_str = "skill_dance"
+        self.name = FSMStateName.SKILL_KungFu2
+        self.name_str = "skill_kungfu2"
         self.motion_phase = 0
         self.counter_step = 0
         self.ref_motion_phase = 0
         
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        config_path = os.path.join(current_dir, "config", "Dance.yaml")
+        config_path = os.path.join(current_dir, "config", "KungFu2.yaml")
         with open(config_path, "r") as f:
             config = yaml.load(f, Loader=yaml.FullLoader)
             self.onnx_path = os.path.join(current_dir, "model", config["onnx_path"])
@@ -63,7 +62,7 @@ class Dance(FSMState):
                 obs_tensor = obs_tensor.astype(np.float32)
                 self.ort_session.run(None, {self.input_name: obs_tensor})[0]
                     
-            print("Dance policy initializing ...")
+            print("KungFu2 policy initializing ...")
     
     def enter(self):
         self.action = np.zeros(23, dtype=np.float32)
@@ -130,6 +129,9 @@ class Dance(FSMState):
         
         mimic_obs_tensor = torch.from_numpy(mimic_obs_buf).unsqueeze(0).cpu().numpy()
         self.action = np.squeeze(self.ort_session.run(None, {self.input_name: mimic_obs_tensor})[0])
+        self.action = np.clip(self.action, -10., 10.)
+        
+        
         target_dof_pos = np.zeros(29)
         target_dof_pos[:15] = self.action[:15] * self.action_scale + self.default_angles[:15]
         target_dof_pos[15:19] = self.action[15:19] * self.action_scale + self.default_angles[15:19]
@@ -171,4 +173,4 @@ class Dance(FSMState):
             return FSMStateName.FIXEDPOSE
         else:
             self.state_cmd.skill_cmd = FSMCommand.INVALID
-            return FSMStateName.SKILL_Dance
+            return FSMStateName.SKILL_KungFu2

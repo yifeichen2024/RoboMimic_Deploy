@@ -1,6 +1,6 @@
 policy_path: "policy_15dof.pt"
 
-total_time: 2.0
+total_time: 1.0
 
 period: 0.8
 

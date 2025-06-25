@@ -113,9 +113,11 @@ class LocoMode(FSMState):
         if(self.state_cmd.skill_cmd == FSMCommand.SKILL_1):
             return FSMStateName.SKILL_Dance
         elif(self.state_cmd.skill_cmd == FSMCommand.SKILL_2):
-            return FSMStateName.SKILL_CAST
-        # elif(self.state_cmd.skill_cmd == FSMCommand.SKILL_3):
-        #     return FSMStateName.SKILL_KICK
+            return FSMStateName.SKILL_KungFu
+        elif(self.state_cmd.skill_cmd == FSMCommand.SKILL_3):
+            return FSMStateName.SKILL_KICK
+        elif(self.state_cmd.skill_cmd == FSMCommand.SKILL_4):
+            return FSMStateName.SKILL_KungFu2
         elif(self.state_cmd.skill_cmd == FSMCommand.PASSIVE):
             return FSMStateName.PASSIVE
         else:
