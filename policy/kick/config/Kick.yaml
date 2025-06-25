@@ -1,4 +1,4 @@
-onnx_path: "model_62000.onnx"
+onnx_path: "kick_0607.onnx"
 
 motion_length: 3.633
 
