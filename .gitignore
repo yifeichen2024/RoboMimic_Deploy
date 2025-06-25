@@ -44,6 +44,7 @@ htmlcov/
 # PyCharm
 .idea/
 *.iml
+*.TXT
 
 # macOS
 .DS_Store
