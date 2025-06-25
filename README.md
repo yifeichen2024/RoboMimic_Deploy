@@ -6,7 +6,7 @@
 </div>
 
 <p align="center">
-  <strong>This is a repository for reinforcement learning implementation based on Unitree robots, supporting Unitree G1.</strong> 
+  <strong>​RoboMimic Deploy​​ is a multi-policy robot deployment framework based on a state-switching mechanism. Currently, the included policies are designed for the ​​Unitree G1 robot (29-DoF)​​.</strong> 
 </p>
 
 ## Installation and Configuration
@@ -72,17 +72,21 @@ python deploy_mujoco/deploy_mujoco.py
 ```
 
 ## 2. Policy Descriptions
-- PassiveMode:   Damping protection mode
-- FixedPose:     Position control to reset joint angles to default values
-- LocoMode:      Control mode for stable walking
-- Dance:         Charleston dance
-- KongFu:        720-degree spinning kick (recommended only run in simulation)
-- SkillCast:     Lower body and waist stabilization, upper body position-controlled to specific joint angles (typically executed before Mimic policy)
-- SkillCooldown:  Lower body and waist continuous balancing, upper body reset to default joint angles (typically executed after Mimic policy)
+| Mode Name        | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| **PassiveMode**  | Damping protection mode                                                     |
+| **FixedPose**    | Position control reset to default joint values                              |
+| **LocoMode**     | Stable walking control mode                                                 |
+| **Dance**        | Charleston dance routine                                                    |
+| **KungFu**       | Martial arts movement                                                       |
+| **KungFu2**      | Failed martial arts training                                     |
+| **Kick**         | Bad mimic policy                                     |
+| **SkillCast**    | Lower body + waist stabilization with upper limbs positioned to specific joint angles (typically executed before Mimic strategy) |
+| **SkillCooldown**| Lower body + waist continuous balancing with upper limbs reset to default angles (typically executed after Mimic strategy) |
 
 
 ---
-## 3. 仿真操作说明
+## 3. Operation Instructions in Simulation
 1. Connect an Xbox controller.
 2. Run the simulation program:
 ```bash
@@ -91,13 +95,14 @@ python deploy_mujoco/deploy_mujoco.py
 3. Press the ​​Start​​ button to enter position control mode.
 4. Hold ​​R1 + A​​ to enter ​​LocoMode​​, then press BACKSPACE in the simulation to make the robot stand. Afterward, use the joystick to control walking.
 5. Hold ​​R1 + X​​ to enter ​​Dance​​ mode—the robot will perform the Charleston. In this mode:
-    - Press ​​L1​​ at any time to switch to damping protection mode.
+    - Press ​​Select​​ at any time to switch to damping protection mode.
     - Hold ​​R1 + A​​ to return to walking mode (not recommended).
-    - Press ​​Start​​ to return to position control mode (not recommended).
+    - Press ​​Start​​ to return to position control mode.
 
 6. The terminal will display a progress bar for the dance. After completion, press ​​R1 + A​​ to return to normal walking mode.
-7. In ​​LocoMode​​, pressing ​​R1 + Y​​ triggers a 720-degree spinning kick—​​use only in simulation​​.
-
+7. In ​​LocoMode​​, pressing ​​R1 + Y​​ triggers a Martial arts movement —​ ​use only in simulation​​.
+8. In ​​LocoMode​​, pressing ​​L1 + Y​​ triggers a Martial arts movement(Failed) —​ ​use only in simulation​​.
+9. In ​​LocoMode​​, pressing ​​R1 + B​ triggers a Kick movement(Failed) —​ ​use only in simulation​​.
 ---
 ## 4. Real Robot Operation Instructions
 
@@ -112,17 +117,31 @@ python deploy_real/deploy_real.py
 
 ---
 ## Important Notes
-1. Deployment Recommendation​​:
-- It is advised to deploy on a personal computer rather than the onboard Orin NX of the G1 robot.
-- During testing, ​​LocoMode​​ and Mimic policies performed noticeably worse on the NX. The cause is currently unknown, feedback is welcome.
+### 1. Framework Compatibility Notice
+The current framework does not natively support deployment on G1 robots equipped with Orin NX platforms. Preliminary analysis suggests compatibility issues with the `unitree_python_sdk` on Orin systems. For onboard Orin deployment, we recommend the following alternative solution:
 
-2. Mimic Policy Reliability​​:
-- Success is not guaranteed, especially on slippery/sandy surfaces.
-- If the robot loses control, immediately:
-  Press ​​L1​​ to enter damping protection mode, or \
-  Press ​​Select​​ to exit the control program.
+- Replace with [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2) (official C++ SDK)
+- Implement a dual-node ROS architecture:
+  - **C++ Node**: Handles data transmission between robot and controller
+  - **Python Node**: Dedicated to policy inference
 
-3. 720-Degree Spinning Kick (R1+Y)​​:
-- Strongly recommended for simulation only​​.
-- If attempted on a real robot, ensure proper safety measures.
-- The author assumes no responsibility for robot damage or injuries.
+### 2. Mimic Policy Reliability Warning
+The Mimic policy does not guarantee 100% success rate, particularly on slippery/sandy surfaces. In case of robot instability:
+- Press `F1` to activate **PassiveMode** (damping protection)
+- Press `Select` to immediately terminate the control program
+
+### 3. Charleston Dance (R1+X) - Stable Policy Notes
+Currently the only verified stable policy on physical robots:
+
+⚠️ **Important Precautions**:
+- **Palm Removal Recommended**: The original training didn't account for palm collisions (author's G1 lacked palms)
+- **Initial/Final Stabilization**: Brief manual stabilization may be required when starting/ending the dance
+- **Post-Dance Transition**: While switching to **Locomotion/PositionControl/PassiveMode** is possible, we recommend:
+  - First transition to **PositionControl** or **PassiveMode**
+  - Provide manual stabilization during transition
+
+### 4. Other Movement Advisories
+All other movements are currently **not recommended** for physical robot deployment.
+
+### 5. Strong Recommendation
+**Always** master operations in simulation before attempting physical robot deployment.
