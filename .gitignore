@@ -54,9 +54,6 @@ htmlcov/
 # 忽略所有临时 USD 文件
 *.tmp.usd
 
-# 忽略模型权重文件（按需取消注释）
-*.pt
-*.onnx
 *.h5
 *.ckpt
 
