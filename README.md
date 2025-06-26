@@ -9,6 +9,12 @@
   <strong>​RoboMimic Deploy​​ is a multi-policy robot deployment framework based on a state-switching mechanism. Currently, the included policies are designed for the ​​Unitree G1 robot (29-DoF)​​.</strong> 
 </p>
 
+## Preface
+
+- **​This deployment framework is only applicable to G1 robots with a 3-DOF waist. If a waist fixing bracket is installed, it must be unlocked according to the official tutorial before this framework can be used normally.​​**
+
+- **It is recommended to remove the hands, as dance movements may cause interference.​**
+
 ## Installation and Configuration
 
 ## 1. Create a Virtual Environment
