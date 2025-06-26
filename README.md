@@ -106,7 +106,7 @@ python deploy_mujoco/deploy_mujoco.py
 ---
 ## 4. Real Robot Operation Instructions
 
-1. Power on the robot and suspend it (e.g., with a harness).
+1. Power on the robot and suspend it (e.g., with a harness). and then hold L2+R2
 
 2. Run the deploy_real program:
 ```bash

@@ -112,7 +112,7 @@ python deploy_mujoco/deploy_mujoco.py
 9. 在LocoMode模式下，按R1+B让机器人表演踢腿动作，**只推荐在仿真中使用**
 ---
 ## 4. 真机操作说明
-1. 开机后将机器人吊起来
+1. 开机后将机器人吊起来，按L2+R2进入调试模式
 
 2. 运行deploy_real程序：
 ```bash
