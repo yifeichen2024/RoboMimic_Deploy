@@ -15,6 +15,8 @@
 
 - **It is recommended to remove the hands, as dance movements may cause interference.​**
 
+- **[video instruction](https://www.bilibili.com/video/BV1VTKHzSE6C/?vd_source=713b35f59bdf42930757aea07a44e7cb#reply114743994027967)**
+
 ## Installation and Configuration
 
 ## 1. Create a Virtual Environment
