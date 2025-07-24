@@ -38,7 +38,7 @@ conda install pytorch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 pytorch-cuda=
 Clone the repository via git:
 
 ```bash
-git clone https://github.com/ccrpRepo/RoboMimic_Deploy.git
+git clone https://github.com/yifeichen2024/RoboMimic_Deploy.git
 ```
 
 #### 2.2.2 Install Components
